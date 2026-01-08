@@ -101,30 +101,60 @@ footer { background: #0b1c31; color: white; padding: 70px 0 30px; }
 .whatsapp-container {
     position: fixed;
     bottom: 25px;
-    left: 25px; /* LADO ESQUERDO */
-    z-index: 9999;
+    left: 25px; 
+    z-index: 99999; /* Aumentei para garantir que nada cubra o botão */
 }
+
 .whatsapp-btn {
     width: 60px; height: 60px;
     background-color: #25D366;
-    border-radius: 50%; border: none;
+    border-radius: 50%; 
+    border: none;
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
     transition: transform 0.3s;
     animation: pulse 2s infinite;
 }
+
+.whatsapp-btn img {
+    width: 35px;
+    height: 35px;
+    display: block; /* Garante que a imagem não bugue */
+    pointer-events: none; /* Garante que o clique vá no botão, não na imagem */
+}
+
 .whatsapp-btn:hover { transform: scale(1.1); }
 
 /* Pop-up WhatsApp */
 .whatsapp-popup {
-    position: absolute; bottom: 75px; left: 0;
-    width: 300px; background: white; border-radius: 15px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.15); overflow: hidden;
-    opacity: 0; visibility: hidden;
-    transform: translateY(20px); transition: all 0.3s;
+    position: absolute; 
+    bottom: 75px; 
+    left: 0;
+    width: 300px; 
+    background: white; 
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2); 
+    overflow: hidden;
+    
+    /* Configuração de visibilidade */
+    opacity: 0; 
+    visibility: hidden;
+    transform: translateY(20px); 
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     transform-origin: bottom left;
 }
-.whatsapp-popup.active { opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* Quando tiver a classe 'active', ele aparece */
+.whatsapp-popup.active { 
+    opacity: 1; 
+    visibility: visible; 
+    transform: translateY(0); 
+}
+
+/* Resto do CSS do Popup (Header, Itens) mantém igual... */
 .popup-header {
     background-color: #075e54; color: white; padding: 15px;
     font-size: 0.95rem; font-weight: 600;
@@ -146,18 +176,4 @@ footer { background: #0b1c31; color: white; padding: 70px 0 30px; }
     0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
     70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
-/* Mobile */
-.hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
-@media (max-width: 768px) {
-    .nav-links {
-        position: fixed; right: -100%; top: 80px; height: calc(100vh - 80px);
-        background: white; flex-direction: column; width: 100%; justify-content: center;
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .nav-links.active { right: 0; }
-    .hamburger { display: block; }
-    .promo-grid { grid-template-columns: 1fr; }
-    .promo-info h2 { font-size: 1.8rem; }
 }
